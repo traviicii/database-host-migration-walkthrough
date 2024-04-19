@@ -28,7 +28,7 @@ pg_dump --version
 psql --version
 ```
 
-> If you have versions for these tools, you can move onto [Generating a backup file](#generate-a-backup-using-pg_dump)
+> If you have versions for these tools, you can move onto [Generating a backup file](#2-generate-a-backup-using-pg_dump)
 
 ### If necessary, install psql (PostgreSQL)
 
