@@ -1,2 +1,85 @@
-# database-host-migration-walkthrough
+# PostgreSQL Host Migration Walkthrough
 A step-by-step guide to migrating a pre-existing database from one host to another.
+
+## Choose a new database provider
+Below are a few potential options. In this walkthrough we'll be using Supabase as an example.
+
+- Amazon RDS for AWS
+- Azure Database for PostgreSQL on Microsoft Azure
+- Google Cloud SQL
+- Heroku Postgres
+- Supabase
+
+> Create a new PostgreSQL database instance with your chosen provider before proceding.
+
+> We'll be creating a backup of the database that we want to transfer, and using it to populate our new database instance.
+
+---
+----
+
+## 1. Install PostgreSQL tools on your machine
+
+### First see if you already have the necessary PostgreSQL tools
+
+#### Open a new terminal or CMD prompt:
+
+```bash
+pg_dump --version
+psql --version
+```
+
+> If you have versions for these tools, you can move onto [Generating a backup file](#-construct-your-backup-using-pg-dump)
+
+### If necessary, install psql (PostgreSQL)
+
+#### Mac install using Homebrew
+[Homebrew Documentation](https://brew.sh/)
+```bash
+brew install postgresql
+```
+> This command installs PostgreSQL along with `pg_dump`, `psql`, and other PostgreSQL tools.
+
+#### Windows
+
+1. Go to the [PostgreSQL download page](https://www.postgresql.org/download/windows/).
+2. You'll be directed to a page where you can download the installer provided by EnterpriseDB, which includes all the necessary tools like `pg_dump` and `psql`.
+3. Execute the downloaded installer file.
+> Follow the on-screen instructions. The installer will ask you to select components to install. Make sure to include the PostgreSQL server, the command line tools, and any additional components you might need.
+
+>During installation, you will be prompted to set a password for the PostgreSQL superuser (postgres), and you can also specify the port on which PostgreSQL will listen (default is 5432). We'll be using this default port in this walkthrough.
+The installer usually sets up the path environment variable for PostgreSQL automatically, which means you can run `pg_dump` and `psql` from any command prompt window.
+
+### Verify installation
+
+```bash
+pg_dump --version
+psql --version
+```
+
+## Generate a backup using `pg_dump`
+
+### Construct your backup command
+Be sure to construct this command properly!
+
+```bash
+pg_dump -h [old-host] -U [username] -d [database-name] -f backup.sql -W --port=5432
+```
+
+- `pg_dump`: This is the command itself, which invokes the PostgreSQL database backup utility.
+
+- `-h [old-host]`: This option specifies the hostname of the database server. In the context of your command, replace [old-host] with the actual hostname, IP address, or server where your ElephantSQL database is hosted. This could be a URL or an IP address.
+
+- `-U [username]`: This option specifies the username to connect to the database. <mark>This is different than the username associated with your account</mark>. Check database details and replace [username] with the actual username that has access to the database you want to back up.
+
+- `-d [database-name]`: This option specifies the name of the database to back up. It's likely that this is the same as the username above. Check your database details to confirm if the username and default database name differ. Replace [database-name] with the name for your database.
+
+- `-f backup.sql`: This option directs pg_dump to write the output (the dump file) to a file rather than to standard output. backup.sql is the name of the file where the dump will be saved. You can specify a different file name or path if you prefer to save the file somewhere specific.
+
+- `-W` option will prompt you for the database password when you run the command
+
+### Execute the Command
+1. Open your terminal/CMD prompt
+2. Run the command above.
+3. Enter the database password when prompted.
+
+### If you've constructed your backup command correctly, you should see a backup file in the location your terminal was pointed at during the execution of the backup command.
