@@ -61,7 +61,7 @@ psql --version
 ## 2. Generate a backup using `pg_dump`
 
 ### Construct your backup command
-Be sure to construct this command properly using your current database details!
+Gather your database details needed to run this command. Be sure to use your current database!
 
 ```bash
 pg_dump -h [old-host] -U [username] -d [database-name] -f backup.sql -W --port=5432
