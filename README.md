@@ -1,4 +1,4 @@
-# PostgreSQL Host Migration Walkthrough
+# PostgreSQL Host Migration Walkthrough 
 ---
 
 A step-by-step guide to migrating a pre-existing database from one host to another.
@@ -87,7 +87,7 @@ pg_dump -h [old-host] -U [username] -d [database-name] -f backup.sql -W --port=5
 > ***Create a new PostgreSQL database instance with your chosen provider before proceding.***
 
 
-## 3. Construct your import command using `psql`
+## 3. Import the backup into the new database using `psql`
 
 ### Gather Your Supabase Database Details
 
@@ -102,11 +102,21 @@ You can find these details in the Supabase dashboard under the "Project Settings
 
 ### Construct your import command
 
->  <mark>This command is slightly different than before</mark>
+>  <mark>***This command is slightly different than before***</mark>
 
-Fill in the placeholders with your actual database details. 
+Fill in the placeholders with your database details. 
 ```bash
 psql -h [new-host] -U [new-username] -d [new-database-name] -f backup.sql
 ```
 
+### Execute the Command
+1. Run the command above.
+2. Enter the database password when prompted.
 
+## 4. Verify Data Integrity
+Check that all data has been transferred correctly. Run test queries and compare the results with your old database to ensure integrity.
+
+## 5. Update Application Configurations
+Update any application environment or service configurations that interact with the database to point to the new database instance.
+
+# Your database migration is complete! 🚀✨
