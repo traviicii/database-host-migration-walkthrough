@@ -17,9 +17,9 @@ Below are a few potential options. In this walkthrough, *we'll be using Elephant
 
 ## 1. Install PostgreSQL tools on your machine
 
-### First see if you already have the necessary PostgreSQL tools
+### First see if you already have the required PostgreSQL tools installed
 
-#### Open a new terminal or CMD prompt:
+#### Open a new terminal or CMD prompt and run:
 
 ```bash
 pg_dump --version
@@ -29,15 +29,16 @@ psql --version
 > If you have versions for these tools installed, you can move onto step 2 -> [Generating a backup file](#2-generate-a-backup-using-pg_dump)
 
 ### If necessary, install psql (PostgreSQL)
-> [PostgreSQL Documentation](https://www.postgresql.org/)
+[PostgreSQL Documentation](https://www.postgresql.org/)
 
 
 #### Mac install using Homebrew
 > [Homebrew Documentation](https://brew.sh/)
+
+This command installs PostgreSQL along with `pg_dump`, `psql`, and other PostgreSQL tools.
 ```bash
 brew install postgresql
 ```
-> This command installs PostgreSQL along with `pg_dump`, `psql`, and other PostgreSQL tools.
 
 #### Windows
 
@@ -89,7 +90,7 @@ pg_dump -h [old-host] -U [username] -d [database-name] -f backup.sql -W --port=5
 
 ## 3. Import the backup into the new database using `psql`
 
-### Gather Your Supabase Database Details
+### Gather Your New Database Details
 
 You'll need the following information from your Supabase project or the database you're transferring to:
 
