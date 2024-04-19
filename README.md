@@ -17,7 +17,7 @@ Below are a few potential options. In this walkthrough, *we'll be using Elephant
 
 ## 1. Install PostgreSQL tools on your machine
 
-### First see if you already have the required PostgreSQL tools installed
+### First see if you already have the required tools installed
 
 #### Open a new terminal or CMD prompt and run:
 
