@@ -14,8 +14,6 @@ Below are a few potential options. In this walkthrough we'll be using Supabase a
 
 > We'll be creating a backup of the database that we want to transfer, and using it to populate our new database instance.
 
----
-----
 
 ## 1. Install PostgreSQL tools on your machine
 
@@ -28,7 +26,7 @@ pg_dump --version
 psql --version
 ```
 
-> If you have versions for these tools, you can move onto [Generating a backup file](#2-generate-a-backup-using-pg_dump)
+> If you have versions for these tools installed, you can move onto step 2 -> [Generating a backup file](#2-generate-a-backup-using-pg_dump)
 
 ### If necessary, install psql (PostgreSQL)
 
@@ -83,3 +81,27 @@ pg_dump -h [old-host] -U [username] -d [database-name] -f backup.sql -W --port=5
 3. Enter the database password when prompted.
 
 ### If you've constructed your backup command correctly, you should see a backup file in the location your terminal was pointed at during the execution of the backup command.
+
+# 3. Gather Your Supabase Database Details
+You'll need the following information from your Supabase project:
+
+- Host: This is the URL of your Supabase database instance.
+- Username: Typically, this is postgres or another administrator username provided by Supabase.
+- Database Name: The specific database into which you want to import your backup.
+- Password: Your database password.
+
+You can find these details in the Supabase dashboard under the "Project Settings" tab, then "Database".
+
+# 4. Construct your import command
+Fill in the placeholders with your actual database details. Your command will look something like this:
+```bash
+psql -h [your-supabase-host] -U [your-username] -d [your-database-name] -f backup.sql
+```
+
+For example:
+```
+psql -h db.supabase.co -U postgres -d postgres -f backup.sql
+```
+
+Import your backup into your new database
+### Construct the import command
