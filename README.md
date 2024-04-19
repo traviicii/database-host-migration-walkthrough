@@ -68,9 +68,9 @@ pg_dump -h [old-host] -U [username] -d [database-name] -f backup.sql -W --port=5
 
 - `-h [old-host]`: This option specifies the hostname of the database server. In the context of your command, replace [old-host] with the actual hostname, IP address, or server where your ElephantSQL database is hosted. This could be a URL or an IP address.
 
-- `-U [username]`: This option specifies the username to connect to the database. ===<mark>This is different than the username associated with your overall account</mark>===. Check database details and replace [username] with the actual username that has access to the database you want to back up.
+- `-U [username]`: This option specifies the username to connect to the database. <mark>***This is different than the username associated with your overall account***</mark>. Check database details and replace [username] with the actual username that has access to the database you want to back up.
 
-- `-d [database-name]`: This option specifies the name of the database to back up. <mark>It's likely that this is the same as the username above</mark>. Check your database details to confirm if the username and default database name differ. Replace [database-name] with the name for your database.
+- `-d [database-name]`: This option specifies the name of the database to back up. <mark>***It's possible that this is the same as the username above***</mark>. Check your database details to confirm if the username and default database name differ. Replace [database-name] with the name for your database.
 
 - `-f backup.sql`: This option directs pg_dump to write the output (the dump file) to a file rather than to standard output. backup.sql is the name of the file where the dump will be saved. You can specify a different file name or path if you prefer to save the file somewhere specific.
 
