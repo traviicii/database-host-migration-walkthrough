@@ -94,10 +94,13 @@ pg_dump -h [old-host] -U [username] -d [database-name] -f backup.sql -W --port=5
 
 You'll need the following information from your Supabase project or the database you're transferring to:
 
-- Host: This is the URL of your Supabase database instance.
-- Username: Typically, this is postgres or another administrator username provided by Supabase.
-- Database Name: The specific database into which you want to import your backup.
-- Password: Your database password.
+- `Host`: Specifies the hostname or IP address of the database server. When using Supabase, this would be the URL provided in your project's database settings, such as `aws-0-us-west-1.pooler.supabase.com`.
+
+- `Username`: This specifies the username to connect to the database. Typically, an administrator username is provided.
+
+- `Database Name`: The specific database into which you want to import your backup. On Supabase, this is often defaulted to `postgres`.
+
+- `Password`: Your database password.
 
 You can find these details in the Supabase dashboard under the "Project Settings" tab, then "Database".
 
